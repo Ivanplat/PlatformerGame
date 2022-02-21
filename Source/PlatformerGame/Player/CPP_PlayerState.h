@@ -14,4 +14,14 @@ class PLATFORMERGAME_API ACPP_PlayerState : public APlayerState
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)
+	int32 Points;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)
+	int32 WinPoints;
+public:
+	virtual void ChangePoints(int32 Value);
+	virtual void ChangeWinPoints(int32 Value);
+public:
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };

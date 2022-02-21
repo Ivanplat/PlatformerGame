@@ -19,18 +19,22 @@ public:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
 	class UTimelineComponent* TimelineComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
+	class USplineComponent* Spline;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
+	class USceneComponent* Root;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Timeline Variables")
-	class UCurveVector* TimelineVectorCurve;
+	class UCurveFloat* TimelineFloatCurve;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Timeline Variables")
 	bool Played = false;
 protected:
-	class FOnTimelineVector TimelineInterp;
+	class FOnTimelineFloat TimelineInterp;
 	class FOnTimelineEvent TimelineEnd;
 protected:
 	virtual void BeginPlay() override;
 protected:
 	UFUNCTION()
-	virtual void OnTimelineInterp(FVector InVector);
+	virtual void OnTimelineInterp(float Value);
 	UFUNCTION()
 	virtual void OnTimelineEnd();
 

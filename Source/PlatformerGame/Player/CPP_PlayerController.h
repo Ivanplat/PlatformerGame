@@ -7,6 +7,7 @@
 #include "CPP_PlayerController.generated.h"
 
 DECLARE_DELEGATE(FPlayerSpawned);
+DECLARE_DELEGATE_OneParam(FPlayerReachedEnd, class ACPP_PlayerController*);
 DECLARE_DELEGATE_OneParam(FPlayerDead, class ACPP_PlayerController*);
 
 UCLASS()
@@ -20,7 +21,11 @@ protected:
 public:
 	FPlayerSpawned PlayerSpawnedDelegate;
 	FPlayerDead PlayerDeadDelegate;
+	FPlayerReachedEnd PlayerReachedEnd;
 protected:
 	UFUNCTION()
 	virtual void OnPlayerSpawned();
+
+	UFUNCTION()
+	virtual void OnPlayerReachedEnd(ACPP_PlayerController* PlayerController);
 };

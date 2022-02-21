@@ -3,19 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Engine/StaticMeshActor.h"
 #include "CPP_BasePlatform.generated.h"
 
 UCLASS()
-class PLATFORMERGAME_API ACPP_BasePlatform : public AActor
+class PLATFORMERGAME_API ACPP_BasePlatform : public AStaticMeshActor
 {
 	GENERATED_BODY()
 	
 public:	
 	ACPP_BasePlatform();
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Platform Components")
-	class USceneComponent* Root;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
-	class UStaticMeshComponent* StaticMesh;
 };

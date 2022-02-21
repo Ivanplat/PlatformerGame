@@ -2,7 +2,7 @@
 
 
 #include "CPP_PlayerController.h"
-#include "CPP_PlayerController.h"
+#include "CPP_PlayerState.h"
 #include "PlatformerGame/FunctionLibraries/CPP_DebugFunctionLibrary.h"
 #include "PlatformerGame/Game/CPP_MainGamemode.h"
 
@@ -24,4 +24,12 @@ void ACPP_PlayerController::BeginPlay()
 void ACPP_PlayerController::OnPlayerSpawned()
 {
 	UCPP_DebugFunctionLibrary::PrintDebugW("ACPP_PlayerController::OnPlayerSpawned", this);
+}
+
+void ACPP_PlayerController::OnPlayerReachedEnd(ACPP_PlayerController* PlayerController)
+{
+	if (ACPP_PlayerState* PState = GetPlayerState<ACPP_PlayerState>())
+	{
+		PState->ChangeWinPoints(1);
+	}
 }
