@@ -20,13 +20,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
 	class UTimelineComponent* TimelineComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
-	class USplineComponent* Spline;
+	class USceneComponent* MovingSpace;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Platform Components")
-	class USceneComponent* Root;
+	class USplineComponent * Spline;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Timeline Variables")
 	class UCurveFloat* TimelineFloatCurve;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Timeline Variables")
 	bool Played = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Timeline Variables")
+	bool MoveFromStart = true;
 protected:
 	class FOnTimelineFloat TimelineInterp;
 	class FOnTimelineEvent TimelineEnd;
@@ -37,5 +39,6 @@ protected:
 	virtual void OnTimelineInterp(float Value);
 	UFUNCTION()
 	virtual void OnTimelineEnd();
-
+protected:
+	virtual void ImplementsPlatform() override;
 };

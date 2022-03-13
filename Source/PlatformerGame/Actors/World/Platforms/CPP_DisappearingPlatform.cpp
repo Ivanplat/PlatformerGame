@@ -10,9 +10,6 @@ void ACPP_DisappearingPlatform::BeginPlay()
 
 void ACPP_DisappearingPlatform::ShowPlatform()
 {
-	if (auto StaticMesh = GetStaticMeshComponent())
-	{
-		StaticMesh->GetRelativeScale3D() == FVector(0.0f) ?
-		StaticMesh->SetRelativeScale3D(FVector(1.0f)) : StaticMesh->SetRelativeScale3D(FVector(0.0f));
-	}
+	Mesh->GetRelativeScale3D() == FVector(0.0f) ?
+	Mesh->SetRelativeScale3D(FVector(1.0f)) : Mesh->SetRelativeScale3D(FVector(0.0f));
 }

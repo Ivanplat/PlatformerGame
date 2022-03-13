@@ -4,10 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include <PlatformerGame/Interfaces/CPP_InteractionInterface.h>
+#if defined(__DEBUG)
+#include <PlatformerGame/FunctionLibraries/CPP_DebugFunctionLibrary.h>
+#endif
 #include "CPP_BaseWorldActor.generated.h"
 
+
 UCLASS()
-class PLATFORMERGAME_API ACPP_BaseWorldActor : public AActor
+class PLATFORMERGAME_API ACPP_BaseWorldActor : public AActor, public ICPP_InteractionInterface
 {
 	GENERATED_BODY()
 	
@@ -18,4 +23,8 @@ protected:
 protected:	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "World Actor Component")
 	class USceneComponent* Root;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "World Actor Component")
+	class UStaticMeshComponent* Mesh;
+protected:
+	virtual void PlayWorldActorSound() {}
 };

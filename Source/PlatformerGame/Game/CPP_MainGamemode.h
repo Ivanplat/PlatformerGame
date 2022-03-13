@@ -27,6 +27,7 @@ public:
 	virtual void SpawnPlayerDirectly(class ACPP_PlayerController* PlayerController);
 	UFUNCTION()
 	virtual void KillPlayer(class ACPP_PlayerController* PlayerController);
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void StartGame();

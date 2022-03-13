@@ -10,6 +10,13 @@ ACPP_BaseWorldActor::ACPP_BaseWorldActor()
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlatformMesh"));
+
+	if (Mesh)
+	{
+		Mesh->SetupAttachment(Root);
+		Mesh->SetMobility(EComponentMobility::Movable);
+	}
 }
 void ACPP_BaseWorldActor::BeginPlay()
 {
