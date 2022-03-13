@@ -24,18 +24,6 @@ ACPP_PlayerCharacter::ACPP_PlayerCharacter()
 	}
 }
 
-void ACPP_PlayerCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-void ACPP_PlayerCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ACPP_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

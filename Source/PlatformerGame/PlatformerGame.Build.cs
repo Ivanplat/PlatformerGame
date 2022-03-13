@@ -14,9 +14,10 @@ public class PlatformerGame : ModuleRules
 
 
 		Definitions.Add("__DEBUG");
+		Definitions.Remove("__DEBUG");
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
-		
+
 		// Uncomment if you are using online features
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 

@@ -30,7 +30,10 @@ void ACPP_PlayerController::OnPlayerSpawned()
 #endif
 	if (ACPP_PlayerHUD* PlayerHUD = Cast<ACPP_PlayerHUD>(GetHUD()))
 	{
-		PlayerHUD->ShowMainUI();
+		if (!PlayerHUD->MainUIWidget)
+		{
+			PlayerHUD->ShowMainUI();
+		}
 	}
 }
 

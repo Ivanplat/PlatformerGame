@@ -22,10 +22,7 @@ public:
 	class USkeletalMeshComponent* FPMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Components")
 	UCPP_HealthComponent* HealthComponent;
-protected:
-	virtual void BeginPlay() override;
 public:	
-	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 protected:
 	virtual void MoveForward(float Axis);
