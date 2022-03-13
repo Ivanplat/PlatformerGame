@@ -20,11 +20,6 @@ void ACPP_BaseEBox::ImplementsEBox()
 {
 	Enabled = !Enabled;
 	SetLightColor();
-
-	for (auto i : EboxesToImplement)
-	{
-		i->ImplementsEBox();
-	}
 }
 
 void ACPP_BaseEBox::Interact_Implementation(ACPP_PlayerCharacter* Caller)
@@ -34,6 +29,7 @@ void ACPP_BaseEBox::Interact_Implementation(ACPP_PlayerCharacter* Caller)
 		ImplementsEBox();
 		PlayEBoxSound();
 		PlayEBoxAnimation();
+		ImplementOnOthers();
 	}
 }
 
@@ -45,7 +41,18 @@ void ACPP_BaseEBox::PlayEBoxSound()
 	}
 }
 
+void ACPP_BaseEBox::ImplementOnOthers()
+{
+	for (auto i : EboxesToImplement)
+	{
+		i->ImplementsEBox();
+	}
+}
+
 void ACPP_BaseEBox::SetLightColor()
 {
-	Enabled ? EBoxLight->SetLightColor(FLinearColor::Green) : EBoxLight->SetLightColor(FLinearColor::Red);
+	if (EBoxLight)
+	{
+		Enabled ? EBoxLight->SetLightColor(FLinearColor::Green) : EBoxLight->SetLightColor(FLinearColor::Red);
+	}
 }

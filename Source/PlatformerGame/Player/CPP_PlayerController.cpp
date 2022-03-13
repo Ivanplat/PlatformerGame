@@ -5,6 +5,7 @@
 #include "CPP_PlayerState.h"
 #include "PlatformerGame/FunctionLibraries/CPP_DebugFunctionLibrary.h"
 #include "PlatformerGame/Game/CPP_MainGamemode.h"
+#include <PlatformerGame/UI/CPP_PlayerHUD.h>
 
 ACPP_PlayerController::ACPP_PlayerController()
 {
@@ -23,7 +24,13 @@ void ACPP_PlayerController::BeginPlay()
 
 void ACPP_PlayerController::OnPlayerSpawned()
 {
+#if defined(__DEBUG)
 	UCPP_DebugFunctionLibrary::PrintDebugW("ACPP_PlayerController::OnPlayerSpawned", this);
+#endif
+	if (ACPP_PlayerHUD* PlayerHUD = Cast<ACPP_PlayerHUD>(GetHUD()))
+	{
+		PlayerHUD->ShowMainUI();
+	}
 }
 
 void ACPP_PlayerController::OnPlayerReachedEnd(ACPP_PlayerController* PlayerController)

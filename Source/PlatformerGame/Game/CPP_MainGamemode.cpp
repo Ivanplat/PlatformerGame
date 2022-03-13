@@ -4,7 +4,12 @@
 #include "PlatformerGame/Player/CPP_PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include <PlatformerGame/Actors/World/Zones/CPP_SavePointZone.h>
 
+ACPP_MainGamemode::ACPP_MainGamemode()
+{
+	PlayerHitSavePointDelegate.BindUFunction(this, FName("OnPlayerHitSavePoint"));
+}
 
 void ACPP_MainGamemode::SpawnPlayerDirectly(ACPP_PlayerController* PlayerController)
 {
@@ -53,25 +58,39 @@ void ACPP_MainGamemode::StartGame()
 
 }
 
-ACPP_PlayerStart* ACPP_MainGamemode::GetFreeSpawnPoint() const
+ACPP_PlayerStart* ACPP_MainGamemode::GetFreeSpawnPoint()
 {
-	TArray<AActor*> FoundActors;
-	TArray<ACPP_PlayerStart*> FoundFreeStarts;
-	UGameplayStatics::GetAllActorsOfClass(this, PlayerStartClass, FoundActors);	
-	for (auto i : FoundActors)
+	if (!CurrentPlayerSavePoint)
 	{
-		if (ACPP_PlayerStart* PlayerStart = Cast<ACPP_PlayerStart>(i))
+#if defined(__DEBUG)
+		UCPP_DebugFunctionLibrary::PrintDebugW("1", this);
+#endif
+		TArray<AActor*> FoundActors;
+		UGameplayStatics::GetAllActorsOfClassWithTag(this, SavePointsZoneClass, FName("InitSpawn"), FoundActors);
+		if (FoundActors.Num() > 0)
+		{
+#if defined(__DEBUG)
+			UCPP_DebugFunctionLibrary::PrintDebugW("2", this);
+#endif
+			auto P = Cast<ACPP_SavePointZone>(FoundActors[0]);
+			CurrentPlayerSavePoint = P;
+		}
+	}
+	TArray<ACPP_PlayerStart*> FoundFreeStarts;
+	if (CurrentPlayerSavePoint)
+	{
+		for (auto PlayerStart : CurrentPlayerSavePoint->PlayerStarts)
 		{
 			if (PlayerStart->IsFree())
 			{
 				FoundFreeStarts.Add(PlayerStart);
 			}
 		}
-	}
-	if (FoundFreeStarts.Num() > 0)
-	{
-		int32 Index = UKismetMathLibrary::RandomIntegerInRange(0, FoundFreeStarts.Num() - 1);
-		return FoundFreeStarts[Index];
+		if (FoundFreeStarts.Num() > 0)
+		{
+			int32 Index = UKismetMathLibrary::RandomIntegerInRange(0, FoundFreeStarts.Num() - 1);
+			return FoundFreeStarts[Index];
+		}
 	}
 	return nullptr;
 }
@@ -90,4 +109,9 @@ void ACPP_MainGamemode::OnPlayerDead(ACPP_PlayerController* PlayerController)
 	{
 		TryToRespawnPlayer(PlayerController, TimeToRespawnPlayer);
 	}
+}
+
+void ACPP_MainGamemode::OnPlayerHitSavePoint(ACPP_SavePointZone* SavePointZone)
+{
+	CurrentPlayerSavePoint = SavePointZone;
 }

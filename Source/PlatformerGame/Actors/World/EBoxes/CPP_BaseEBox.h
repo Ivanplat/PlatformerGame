@@ -19,6 +19,7 @@ protected:
 	virtual void ImplementsEBox();
 	virtual void Interact_Implementation(class ACPP_PlayerCharacter* Caller) override;
 	virtual void PlayEBoxSound();
+	virtual void ImplementOnOthers();
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EBox's Components")
 	UAudioComponent* Audio;

@@ -6,5 +6,6 @@ void ACPP_ButtonForEBox::ImplementsButton()
 	for (auto i : EBoxesToImplement)
 	{
 		i->ImplementsEBox();
+		i->ImplementOnOthers();
 	}
 }
