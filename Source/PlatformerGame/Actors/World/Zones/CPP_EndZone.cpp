@@ -6,14 +6,8 @@
 #include "PlatformerGame/Player/CPP_PlayerCharacter.h"
 #include "PlatformerGame/Player/CPP_PlayerController.h"
 
-ACPP_EndZone::ACPP_EndZone()
-{
-	BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	BoxCollision->SetupAttachment(Root);
-	BoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ACPP_EndZone::OnBoxCollisionOverlapped);
-}
 
-void ACPP_EndZone::OnBoxCollisionOverlapped(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ACPP_EndZone::OnCollisionOverlaped(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (ACPP_PlayerCharacter* PlayerCharacter = Cast<ACPP_PlayerCharacter>(OtherActor))
 	{

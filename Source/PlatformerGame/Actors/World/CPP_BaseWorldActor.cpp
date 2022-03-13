@@ -2,6 +2,7 @@
 
 
 #include "CPP_BaseWorldActor.h"
+#include "Kismet/KismetMaterialLibrary.h"
 
 ACPP_BaseWorldActor::ACPP_BaseWorldActor()
 {
@@ -22,4 +23,10 @@ void ACPP_BaseWorldActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ACPP_BaseWorldActor::SetMeshMaterialColor(UMaterialInstanceDynamic* MaterialInstance, UStaticMeshComponent* StaticMesh)
+{
+	MaterialInstance->SetVectorParameterValue(FName("PColor"), MeshColor);
+	StaticMesh->SetMaterial(0, MaterialInstance);
 }

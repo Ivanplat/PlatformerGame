@@ -25,6 +25,11 @@ protected:
 	class USceneComponent* Root;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "World Actor Component")
 	class UStaticMeshComponent* Mesh;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "World Actor Varialbes")
+	FLinearColor MeshColor;
 protected:
 	virtual void PlayWorldActorSound() {}
+protected:
+	UFUNCTION(BlueprintCallable)
+	virtual void SetMeshMaterialColor(UMaterialInstanceDynamic* MaterialInstance, UStaticMeshComponent* StaticMesh);
 };

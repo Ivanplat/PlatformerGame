@@ -37,7 +37,6 @@ void ACPP_MovablePlatform::BeginPlay()
 
 void ACPP_MovablePlatform::OnTimelineInterp(float Value)
 {
-	
 	float SplineLengh = Spline->GetSplineLength();
 	float Distance = Value * SplineLengh;
 	FVector NewWorldLocation = Spline->GetLocationAtDistanceAlongSpline(Distance, ESplineCoordinateSpace::World);

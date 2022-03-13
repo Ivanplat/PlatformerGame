@@ -1,4 +1,4 @@
-#include "PlatformerGame/Actors/World/CPP_KillZone.h"
+#include "CPP_KillZone.h"
 #include "Components/BoxComponent.h"
 #include "PlatformerGame/Player/CPP_PlayerCharacter.h"
 #include "PlatformerGame/FunctionLibraries/CPP_DebugFunctionLibrary.h"
@@ -8,12 +8,6 @@ ACPP_KillZone::ACPP_KillZone()
 	PrimaryActorTick.bCanEverTick = false;
 	SetActorTickEnabled(false);
 
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	RootComponent = Root;
-	BoxCollision->SetupAttachment(Root);
-	BoxCollision->SetBoxExtent(FVector(10000.0f, 10000.0f, 20.0f));
-	BoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ACPP_KillZone::OnCollisionOverlaped);
 }
 
 void ACPP_KillZone::BeginPlay()
