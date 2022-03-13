@@ -19,6 +19,7 @@ void ACPP_PlayerController::BeginPlay()
 	if (ACPP_MainGamemode* Gamemode = Cast<ACPP_MainGamemode>(GetWorld()->GetAuthGameMode()))
 	{
 		Gamemode->SpawnPlayerDirectly(this);
+		Gamemode->GameEndDelegate.BindUFunction(this, FName("OnEndGame"));
 	}
 }
 
@@ -38,5 +39,13 @@ void ACPP_PlayerController::OnPlayerReachedEnd(ACPP_PlayerController* PlayerCont
 	if (ACPP_PlayerState* PState = GetPlayerState<ACPP_PlayerState>())
 	{
 		PState->ChangeWinPoints(1);
+	}
+}
+
+void ACPP_PlayerController::OnEndGame()
+{
+	if (ACPP_PlayerHUD* PlayerHUD = Cast<ACPP_PlayerHUD>(GetHUD()))
+	{
+		PlayerHUD->ShowEndWidget();
 	}
 }

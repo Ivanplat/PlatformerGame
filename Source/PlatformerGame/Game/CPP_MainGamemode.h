@@ -6,7 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "CPP_MainGamemode.generated.h"
 
-DECLARE_DELEGATE_OneParam(FPlayerHitSavePoint, class ACPP_SavePointZone*)
+DECLARE_DELEGATE_OneParam(FPlayerHitSavePoint, class ACPP_SavePointZone*);
+DECLARE_DELEGATE(FGameEnd);
 
 UCLASS()
 class PLATFORMERGAME_API ACPP_MainGamemode : public AGameModeBase
@@ -34,6 +35,7 @@ public:
 	virtual void KillPlayer(class ACPP_PlayerController* PlayerController);
 public:
 	FPlayerHitSavePoint PlayerHitSavePointDelegate;
+	FGameEnd GameEndDelegate;
 protected:
 	class ACPP_SavePointZone* CurrentPlayerSavePoint;
 protected:

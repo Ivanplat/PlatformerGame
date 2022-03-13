@@ -9,4 +9,6 @@ void UCPP_BaseWidget::SynchronizeProperties()
 	Super::SynchronizeProperties();
 
 	PlayerController = GetOwningPlayer<ACPP_PlayerController>();
+
+	CreateWidgetStyle();
 }

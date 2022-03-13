@@ -25,7 +25,8 @@ public:
 protected:
 	UFUNCTION()
 	virtual void OnPlayerSpawned();
-
 	UFUNCTION()
 	virtual void OnPlayerReachedEnd(ACPP_PlayerController* PlayerController);
+	UFUNCTION()
+	virtual void OnEndGame();
 };
