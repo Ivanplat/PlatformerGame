@@ -49,6 +49,7 @@ void ACPP_PlayerController::OnEndGame()
 {
 	if (ACPP_PlayerHUD* PlayerHUD = Cast<ACPP_PlayerHUD>(GetHUD()))
 	{
+		SetInputMode(FInputModeUIOnly());
 		PlayerHUD->ShowEndWidget();
 	}
 }

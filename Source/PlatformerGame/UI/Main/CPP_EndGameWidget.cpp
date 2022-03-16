@@ -20,6 +20,7 @@ void UCPP_EndGameWidget::OnEndPressed()
 	if (PlayerController)
 	{
 		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 	RemoveFromParent();
 }
