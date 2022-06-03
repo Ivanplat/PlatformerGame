@@ -34,3 +34,11 @@ void ACPP_PlayerHUD::ShowEndWidget()
 		EndGameWidget->AddToViewport();
 	}
 }
+
+void ACPP_PlayerHUD::ShowInventoryWidget()
+{
+}
+
+void ACPP_PlayerHUD::UpdateInventoryWidget()
+{
+}

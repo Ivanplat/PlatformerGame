@@ -13,9 +13,11 @@ UCLASS()
 class PLATFORMERGAME_API ACPP_PlayerHUD : public AHUD
 {
 	GENERATED_BODY()
-protected:
+public:
 	virtual void ShowMainUI();
 	virtual void ShowEndWidget();
+	virtual void ShowInventoryWidget();
+	virtual void UpdateInventoryWidget();
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerHUD's Variables")
 	TSubclassOf<class UCPP_MainUIWIdget> MainUIWidgetClass;

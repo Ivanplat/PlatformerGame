@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -18,6 +16,32 @@ struct FS_DamageInfo
 	UObject* InstigatorObject;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Damage Info Struct")
 	int32 Damage;
+};
+
+USTRUCT(BlueprintType)
+struct FS_ItemInfo
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	FString ItemName = FString("");
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	FName AttachingSocketName = FName("");
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	int32 Amount = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	int32 MaxAmount = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	bool Stackable = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	UTexture2D* ItemTexture = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	int32 ItemIndex = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Info Struct")
+	TSubclassOf<AActor> ItemClass = nullptr;
+public:
+	friend const bool operator==(const FS_ItemInfo& left, const FS_ItemInfo& right);
 };
 
 UCLASS()
